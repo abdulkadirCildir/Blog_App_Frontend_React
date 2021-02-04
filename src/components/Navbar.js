@@ -73,7 +73,7 @@ export default function Navbar() {
         <Toolbar className={classes.bar}>
           <Typography variant="h6" >
             <a href={'/'} className={classes.headerLeft} >
-              <img src='icon.png' className={classes.icon}/>
+              <img src='icon.png' alt="icon" className={classes.icon}/>
               <p className={classes.title}>Clarus<span className={classes.span}>Blog</span></p>
             </a>
           </Typography>

@@ -66,12 +66,12 @@ export default function Main(props) {
         >
           {post.description}
         </Typography>
-        <Link variant="subtitle1" href="#" className={classes.letShare}>
+        <Link variant="subtitle1" href="/signup" className={classes.letShare}>
           {post.linkText}
         </Link>
       </Grid>
       <Grid className={classes.blogImg}>
-        <img src="world2.png"></img>
+        <img src="world2.png" alt="world"></img>
       </Grid>
     </Paper>
   );
