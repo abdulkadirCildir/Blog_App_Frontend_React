@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 import {AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Button} from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
+  const history = useHistory();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -67,6 +69,14 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  const handleLoginClick = () => {
+    history.push("/signin");
+  };
+
+  const handleRegisterClick = () => {
+    history.push("/signup");
+  };
+
   return (
     <div >
       <AppBar className={classes.root}>
@@ -78,8 +88,8 @@ export default function Navbar() {
             </a>
           </Typography>
           <div className={classes.headerRight}>
-            <Button variant='outlined' className={classes.buttons}>Sign In</Button>
-            <Button variant='outlined' className={classes.buttons}>Sign Up</Button>
+            <Button onClick={handleLoginClick} variant='outlined' className={classes.buttons}>Sign In</Button>
+            <Button onClick={handleRegisterClick} variant='outlined' className={classes.buttons}>Sign Up</Button>
             {auth && (
             <div>
               <IconButton
