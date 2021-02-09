@@ -45,15 +45,16 @@ export default function LoginPage() {
           "https://clrswyblog.herokuapp.com/auth/login/",
           values
         )
-        console.log(result)
+        console.log(result);
+        console.log("values", values);
         setToken(result?.data?.key);
         localStorage.setItem("token", result?.data?.key);
-        history.push("/");
+        history.push("/home");
       } catch ({ response }) {
         if (response) {
           console.log(response.data.non_field_errors[0]);
         } else {
-          console.log("Something went wrongly!");
+          console.log("Something went wrong!");
         }
       }
     },

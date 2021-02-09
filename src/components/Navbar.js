@@ -56,7 +56,7 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const history = useHistory();
-  const { token, setToken } = useContext(AppContext);
+  const { token, setToken, currentUser, setCurrentUser } = useContext(AppContext);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -69,6 +69,7 @@ export default function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
+    setCurrentUser(null);
     history.push('/');
     setAnchorEl(null);
   };
@@ -94,6 +95,7 @@ export default function Navbar() {
           <div className={classes.headerRight}>
           {token ? (
             <div>
+              {currentUser}
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"

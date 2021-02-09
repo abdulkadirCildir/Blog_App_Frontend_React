@@ -7,8 +7,9 @@ const { Provider } = AppContext;
 
 export const AppContextProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null)
 
-  return <Provider value={{ token, setToken }}>{children}</Provider>;
+  return <Provider value={{ token, setToken, currentUser, setCurrentUser }}>{children}</Provider>;
 };
 
 AppContextProvider.propTypes = {
