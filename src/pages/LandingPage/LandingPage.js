@@ -1,8 +1,8 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Main from "../components/Main";
+import Main from "../../components/Main";
 // import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 const mainFeaturedPost = {
   title: "Join us and share something about yourself and life!",

@@ -66,7 +66,7 @@ export default function Main(props) {
         >
           {post.description}
         </Typography>
-        <Link variant="subtitle1" href="/signup" className={classes.letShare}>
+        <Link variant="subtitle1" href="/register" className={classes.letShare}>
           {post.linkText}
         </Link>
       </Grid>

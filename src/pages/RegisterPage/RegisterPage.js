@@ -1,7 +1,7 @@
 import React from 'react';
 import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container} from '@material-ui/core/';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -15,58 +15,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-  },
-  icon: {
-    width:'60px', 
-    height: '60px',
-    marginRight: '0.5rem'
-  },
-  title : {
-    margin: '1rem',
-    fontSize: '2.5rem',
-    color: 'white',
-    fontFamily: 'Dancing Script, cursive',
-    letterSpacing: '1px' 
-  },
-  headerLeft: {
-    marginLeft: '3rem',
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'none',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-    textDecoration: 'none',
-  },
-  span:{
-    color: '#424242'
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-export default function SignUp() {
+export default function RegisterPage() {
   const classes = useStyles();
 
   return (
@@ -90,27 +39,15 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="username"
+                name="username"
+                label="Username"
               />
             </Grid>
             <Grid item xs={12}>
@@ -119,9 +56,8 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
                 name="email"
-                autoComplete="email"
+                label="Email"
               />
             </Grid>
             <Grid item xs={12}>
@@ -129,17 +65,21 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                id="password"
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
-                autoComplete="current-password"
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="password2"
+                name="password2"
+                label="Password Again"
+                type="password"
               />
             </Grid>
           </Grid>
@@ -150,12 +90,12 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Submit
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/signin" variant="body2">
-                Already have an account? Sign in
+              <Link href="/login" variant="body2">
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>

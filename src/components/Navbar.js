@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import {AppBar, Toolbar, Typography, IconButton, MenuItem, Menu, Button} from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import { AppContext } from '../context/AppContext'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,23 +44,19 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     margin: '5px',
     color: '#424242',
-    fontSize: '0.90rem'
+    fontSize: '0.90rem',
   },
   span:{
-    color: '#424242'
+    color: '#424242',
   }
 }));
 
 export default function Navbar() {
   const classes = useStyles();
-  const history = useHistory();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  const history = useHistory();
+  const { token, setToken } = useContext(AppContext);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -69,12 +66,19 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+    history.push('/');
+    setAnchorEl(null);
+  };
+
   const handleLoginClick = () => {
-    history.push("/signin");
+    history.push("/login");
   };
 
   const handleRegisterClick = () => {
-    history.push("/signup");
+    history.push("/register");
   };
 
   return (
@@ -88,16 +92,13 @@ export default function Navbar() {
             </a>
           </Typography>
           <div className={classes.headerRight}>
-            <Button onClick={handleLoginClick} variant='outlined' className={classes.buttons}>Sign In</Button>
-            <Button onClick={handleRegisterClick} variant='outlined' className={classes.buttons}>Sign Up</Button>
-            {auth && (
+          {token ? (
             <div>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="#424242"
               >
                 <AccountCircle />
               </IconButton>
@@ -117,9 +118,14 @@ export default function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
+          ) : (
+            <>
+            <Button onClick={handleLoginClick} variant='outlined' className={classes.buttons}>Login</Button>
+            <Button onClick={handleRegisterClick} variant='outlined' className={classes.buttons}>Sign up</Button>
+            </>
           )}
           </div>
         </Toolbar>

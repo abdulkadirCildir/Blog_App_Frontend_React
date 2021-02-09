@@ -1,17 +1,17 @@
 import { Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LandingPage from "../pages/LandingPage";
-import Signin from "../pages/Signin";
-import Signup from "../pages/Signup";
+import LandingPage from "../pages/LandingPage/LandingPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
 
 export default function AppRouter() {
   return (
     <Router>
         <Suspense fallback="<div>loading...</div>">
           <Switch>
+            <Route path="/login/" component={LoginPage} exact />
+            <Route path="/register/" component={RegisterPage} exact/>
             <Route path="/" component={LandingPage} exact />
-            <Route path="/signin/" component={Signin} exact />
-            <Route path="/signup/" component={Signup} exact/>
           </Switch>
         </Suspense>
     </Router>
